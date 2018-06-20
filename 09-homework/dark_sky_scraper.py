@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[12]:
 
 
 import requests
@@ -12,20 +12,20 @@ right_now = datetime.datetime.now()
 date_string = right_now.strftime("%Y-%M")
 
 
-# In[3]:
+# In[13]:
 
 
-response = requests.get("https://api.darksky.net/forecast/XXXXXXX/40.730610,-73.935242?units=si")
+response = requests.get("https://api.darksky.net/forecast/XXXXXX/40.730610,-73.935242?units=si")
 
 
-# In[4]:
+# In[14]:
 
 
 data = response.json()
 data
 
 
-# In[5]:
+# In[17]:
 
 
 right_now_temp = data["currently"]['temperature']
@@ -49,16 +49,18 @@ print("Right now it is", right_now_temp, "degrees and it is", today_summary +". 
       "with temperatures reaching", str(temp_feeling) + " degrees. Low temperature will be at", str(low_temp), 
       rain_warning)
 
+mail_text = "Right now it is", right_now_temp, "degrees and it is", today_summary +". Today will be", temp_feeling_word, "with temperatures reaching", str(temp_feeling) + " degrees. Low temperature will be at", str(low_temp), rain_warning
 
-# In[8]:
+
+# In[16]:
 
 
 response =  requests.post(
-        "https://api.mailgun.net/v3/XXXXXX.mailgun.org/messages",
-        auth=("api", "XXXXX"),
-        data={"from": "Excited User <XXXXXX@XXXXXX.XXXXX.org>",
-              "to": ["XXXX@XXXXX.XXXX"],
+        "https://api.mailgun.net/v3/XXXXXXXX.mailgun.org/messages",
+        auth=("api", "XXXXXXXXX"),
+        data={"from": "Excited User <mailgun@XXXXXXXXXXXXXXX.mailgun.org>",
+              "to": ["XXXXXXXXXX"],
               "subject": "8AM Weather forecast" +right_now.strftime("%B-%d-%Y"),
-              "text": "Testing some Mailgun awesomness!"})
+              "text": mail_text})
 response.text
 
