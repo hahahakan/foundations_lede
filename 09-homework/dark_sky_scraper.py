@@ -15,7 +15,7 @@ date_string = right_now.strftime("%Y-%M")
 # In[36]:
 
 
-response = requests.get("https://api.darksky.net/forecast/d2a29949964481ead00da5a5f5f9b0de/40.730610,-73.935242?units=si")
+response = requests.get("https://api.darksky.net/forecast/XXX/40.730610,-73.935242?units=si")
 doc = BeautifulSoup(response.text, 'html.parser')
 
 
@@ -62,10 +62,10 @@ print("Right now it is", right_now_temp, "degrees and it is", today_summary +". 
 
 
 response =  requests.post(
-        "https://api.mailgun.net/v3/sandboxbed486ceeeea4a4486e001e46204e37f.mailgun.org/messages",
-        auth=("api", "8c24b1a94e84c41024bf44871236f499-0470a1f7-60fa2e91"),
-        data={"from": "Excited User <mailgun@sandboxbed486ceeeea4a4486e001e46204e37f.mailgun.org>",
-              "to": ["ht2494@columbia.edu"],
+        "https://api.mailgun.net/v3/XXX.mailgun.org/messages",
+        auth=("api", "XXX"),
+        data={"from": "Excited User <mailgun@XXXX.mailgun.org>",
+              "to": ["XXXXX"],
               "subject": "8AM Weather forecast" +right_now.strftime("%B-%d-%Y"),
               "text": "Testing some Mailgun awesomness!"})
 response.text
